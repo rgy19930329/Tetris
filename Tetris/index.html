@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
+<title>俄罗斯方块</title>
+
+<script type="text/javascript" src="static/js/jquery-1.8.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="static/css/index.css">
+
+<style type="text/css">
+
+
+</style>
+
+</head>
+<body>
+
+    <div class="wrap">
+        <!-- 右上角显示面板 -->
+        <div id="panel">
+            <canvas id="showNext" width="120" height="80">
+                您的浏览器不支持canvas，您可以选择新版本的chrome
+            </canvas>
+            <div>Level : <span id="level">1</span></div>
+            <div>Score : <span id="score">0</span></div>
+            <button id="gameSwitch">pause</button>
+            <div id="volume"></div>
+        </div>
+
+        <!-- 主画布 -->
+        <canvas id="mycanvas" width="400" height="600">
+            您的浏览器不支持canvas，您可以选择新版本的chrome
+        </canvas>
+
+        <!-- 操作面板（控制方向与变换） -->
+        <div class="handlePanle" id="handler">
+            <div class="topdiv dirc" id="topkey">
+                <span class="toparrow"></span>
+            </div>
+            <div class="middlePanel">
+                <div class="leftdiv dirc" id="leftkey">
+                    <span class="leftarrow"></span>
+                </div>
+                <div class="rightdiv dirc" id="rightkey">
+                    <span class="rightarrow"></span>
+                </div>
+            </div>
+            <div class="bottomdiv dirc" id="bottomkey">
+                <span class="bottomarrow"></span>
+            </div>
+        </div>
+
+        <div id="mask">
+            <div id="topMask"></div>
+            <div id="topMaskOver"></div>
+            <div id="bottomMask"></div>
+            <div id="bottomMaskOver"></div>
+            
+            <!-- 缓冲条界面 -->
+            <div id="progressBar">
+                <img src="static/img/progress.jpg" id="progressIco">
+                <p class="loadTip">游戏加载中<span class="dot">...</span></p>
+            </div>
+            <!-- 游戏开始界面 -->
+            <div id="gameStart">
+                <p><span>Tetris</span></p>
+                <p><span>Game Start</span></p>
+                <p><span class="tip">select level</span></p>
+                <div class="selectPanel">
+                    <div class="dirc" id="leftTri">
+                        <span class="larrow"></span>
+                    </div>
+                    <div id="curLevel">1</div>
+                    <div class="dirc" id="rightTri">
+                        <span class="rarrow"></span>
+                    </div>
+                </div>
+                <p><button id="play" class="btn_class">play</button></p>
+                <p><button id="scoreList" class="btn_class">score list</button></p>
+            </div>
+            <!-- 游戏结束界面 -->
+            <div id="gameOver">
+                <p><span>Level-</span><span id="levelOver">1</span></p>
+                <p><span>Game Over</span></p>
+                <p><span id="allScore">0</span></p>
+                <p><span class="tip">your nickname?</span></p>
+                <p><input type="text" class="nickName" id="nickName"></p>
+                <p><button id="ok" class="btn_class">ok</button></p>
+                <p><button id="home1" class="btn_class">home</button></p>
+            </div>
+            <!-- 高分榜界面 -->
+            <div id="scoreListPanel">
+                <p>
+                    <span>Score List (</span> 
+                    <span id="thisLevel">1</span> 
+                    <span>)</span>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>rank</th>
+                            <th>name</th>
+                            <th>score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="showList">
+
+                    </tbody>
+                </table>
+                <p><button id="home2" class="btn_class">home</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 背景音乐和音效 -->
+    <audio src="http://zjdx1.sc.chinaz.com/Files/DownLoad/sound1/201207/1757.mp3" hidden="true" loop="true" id="bgmusic"></audio>
+
+    <audio src="static/audio/fixup.wav" hidden="true" id="fixup"></audio>
+
+    <audio src="static/audio/poprow.wav" hidden="true" id="poprow"></audio>
+
+    <audio src="static/audio/over.mp3" hidden="true" id="over"></audio>
+
+    <script type="text/javascript" src="static/js/index.js"></script>
+
+
+</body>
+</html>

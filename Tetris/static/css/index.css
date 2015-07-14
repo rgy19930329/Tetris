@@ -1,0 +1,499 @@
+* {
+    margin: 0;padding: 0;
+}
+
+body {
+    font : bold italic 18px "Microsoft YaHei" ;
+}
+
+.wrap {
+    width: 400px;
+    height: 600px;
+    margin: 0 auto;
+    border: 10px solid #aaa;
+    position: relative;
+    overflow: hidden;
+}
+
+#mycanvas {
+    background-color: #eee;
+}
+
+.show {
+    position: absolute;
+}
+
+/*------右上角显示面板------*/
+
+#panel {
+    position: absolute;
+    right: 0;
+}
+
+#panel div {
+    padding: 5px;
+    color: transparent;
+    -webkit-text-stroke: 1px orange;
+    text-stroke: 1px orange;
+}
+
+#panel span {
+    float: right;
+}
+
+button {
+    display: block;
+    background: none;
+    width: 100%;
+    font : italic 25px "Microsoft YaHei";
+    padding: 5px;
+
+    color: transparent;
+    -webkit-text-stroke: 1px #59f;
+    text-stroke: 1px #59f;
+}
+
+#gameSwitch {
+    border: none;
+}
+
+#volume {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    background: url(../img/volume.png) 0 0;
+}
+
+/*------操作面板------*/
+
+.handlePanle {
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    bottom: 100px;
+    left: 100px;
+}
+
+.dirc {
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+
+.middlePanel {
+    overflow: hidden;
+}
+
+.leftdiv {
+    float: left;
+}
+
+.rightdiv {
+    float: right;
+}
+
+.topdiv, .bottomdiv {
+    margin: 0 auto;
+}
+
+.handlePanle span {
+    display: block;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+}
+
+.leftarrow {
+    background: url(../img/arrow.png) 0 0;
+    left: 10px;
+    -webkit-animation: leftarrow 1.5s infinite;
+}
+
+@-webkit-keyframes leftarrow {
+    0% { left: 10px; }
+    100% {
+        left: 0; 
+        opacity: 0.2;
+    }
+}
+
+.toparrow {
+    background: url(../img/arrow.png) -70px 0;
+    top: 10px;
+    -webkit-animation: toparrow 1.5s infinite;
+}
+
+@-webkit-keyframes toparrow {
+    0% { top: 10px; }
+    100% {
+        top: 0; 
+        opacity: 0.2;
+    }
+}
+
+.rightarrow {
+    background: url(../img/arrow.png) -140px 0;
+    right: 10px;
+    -webkit-animation: rightarrow 1.5s infinite;
+}
+
+@-webkit-keyframes rightarrow {
+    0% { right: 10px; }
+    100% {
+        right: 0; 
+        opacity: 0.2;
+    }
+}
+
+.bottomarrow {
+    background: url(../img/arrow.png) -210px 0;
+    bottom: 10px;
+    -webkit-animation: bottomarrow 1.5s infinite;
+}
+
+@-webkit-keyframes bottomarrow {
+    0% { bottom: 10px; }
+    100% {
+        bottom: 0; 
+        opacity: 0.2;
+    }
+}
+
+/*------面具覆盖（开始、结束、暂停时使用的遮挡面板）------*/
+
+#mask {
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    top: 0;
+}
+
+#topMask {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background: #000;
+    top: 0;
+    -webkit-animation: topMask 1s ease;
+}
+
+@-webkit-keyframes topMask {
+    0% { top: -300px; }
+    100% {
+        top: 0; 
+    }
+}
+
+#bottomMask {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background: #000;
+    bottom: 0;
+    -webkit-animation: bottomMask 1s ease;
+}
+
+@-webkit-keyframes bottomMask {
+    0% { bottom: -300px; }
+    100% {
+        bottom: 0; 
+    }
+}
+
+#topMaskOver {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background: #000;
+    top: -300px;
+    display: none;
+    -webkit-animation: topMaskOver 1s ease;
+}
+
+@-webkit-keyframes topMaskOver {
+    0% { top: 0; }
+    100% {
+        top: -300px; 
+    }
+}
+
+#bottomMaskOver {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background: #000;
+    bottom: -300px;
+    display: none;
+    -webkit-animation: bottomMaskOver 1s ease;
+}
+
+@-webkit-keyframes bottomMaskOver {
+    0% { bottom: 0; }
+    100% {
+        bottom: -300px; 
+    }
+}
+
+/*---- progressBar ----*/
+
+#progressBar {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    background: #20b6db;
+    z-index: 10;
+}
+
+#progressIco {
+    position: absolute;
+    
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -50px;
+
+    -webkit-animation: rotate 1.5s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+    from {-webkit-transform:rotate(0deg);}
+    to {-webkit-transform:rotate(360deg);}
+}
+
+.loadTip {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    margin-top: 80px;
+
+    font: 30px "Microsoft YaHei";
+    -webkit-text-fill-color: #59f;
+    -webkit-text-stroke-color: #fff;         
+    -webkit-text-stroke-width: 1px;
+}
+
+.dot {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    -webkit-animation: dot 1.5s linear infinite;
+}
+
+@-webkit-keyframes dot {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 20px;
+    }
+}
+
+/*---- gameStart ----*/
+
+#gameStart {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+}
+
+#gameStart p {
+    text-align: center;
+}
+
+#gameStart span {
+    font-size: 60px;
+
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-color: orange;         
+    -webkit-text-stroke-width: 2px;
+
+    text-fill-color: white;
+    text-stroke-color: orange;     
+    text-stroke-width: 2px;
+}
+
+#gameStart .tip {
+    font-size: 30px;
+
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-color: orange;         
+    -webkit-text-stroke-width: 2px;
+
+    text-fill-color: white;
+    text-stroke-color: orange;     
+    text-stroke-width: 2px;
+}
+
+.selectPanel {
+    width: 270px;
+    overflow: hidden;
+    margin: 15px auto;
+}
+
+#curLevel {
+    color: white;
+    font:  50px "Microsoft YaHei";
+}
+
+.selectPanel div {
+    float: left;
+    padding: 0 15px;
+}
+
+.selectPanel span {
+    display: block;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+}
+
+
+.larrow {
+    background: url(../img/arrow.png) 0 0;
+    left: 10px;
+    -webkit-animation: larrow 1.5s 3;
+    cursor: pointer;
+}
+
+@-webkit-keyframes larrow {
+    0% { 
+        left: 10px; 
+        opacity: 0.2;
+    }
+    100% {
+        left: 0; 
+        opacity: 1;
+    }
+}
+
+.rarrow {
+    background: url(../img/arrow.png) -140px 0;
+    right: 10px;
+    -webkit-animation: rarrow 1.5s 3;
+    cursor: pointer;
+}
+
+@-webkit-keyframes rarrow {
+    0% { 
+        right: 10px; 
+        opacity: 0.2;
+    }
+    100% {
+        right: 0; 
+        opacity: 1;
+    }
+}
+
+/*---- gameOver ----*/
+
+#gameOver {
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    display: none;
+}
+
+#gameOver p {
+    text-align: center;
+}
+
+#gameOver span {
+    font-size: 60px;
+
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-color: orange;         
+    -webkit-text-stroke-width: 2px;
+
+    text-fill-color: white;
+    text-stroke-color: orange;     
+    text-stroke-width: 2px;
+}
+
+#gameOver .tip {
+    font-size: 30px;
+
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-color: orange;         
+    -webkit-text-stroke-width: 2px;
+
+    text-fill-color: white;
+    text-stroke-color: orange;     
+    text-stroke-width: 2px;
+}
+
+.nickName {
+    width: 350px;
+    margin: 15px auto;
+    font-size: 35px;
+    text-align: center;
+    padding: 5px;
+    border: none;
+    box-sizing : border-box;
+
+    -webkit-text-fill-color: #fff;
+    -webkit-text-stroke-color: #59f;         
+    -webkit-text-stroke-width: 1px;
+}
+
+.btn_class {
+    width: 350px;
+    font-size: 35px;
+    margin: 10px auto;
+    border: 1px solid #59f;
+    padding-bottom: 10px;
+    background: #59f;
+    color : #fff;
+}
+
+.btn_class:hover {
+    background: #58f;
+    cursor: pointer;
+}
+
+/*---- scoreListPanel ----*/
+
+#scoreListPanel {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: none;
+}
+
+#scoreListPanel p {
+    text-align: center;
+}
+
+#scoreListPanel span {
+    font-size: 45px;
+
+    -webkit-text-fill-color: #fff;
+    -webkit-text-stroke-color: #59f;         
+    -webkit-text-stroke-width: 2px;
+
+    text-fill-color: #fff;
+    text-stroke-color: #59f;     
+    text-stroke-width: 2px;
+}
+
+#scoreListPanel table {
+    width: 100%;
+    border-top: 1px solid #59f;
+    border-bottom: 1px solid #59f;
+}
+
+#scoreListPanel th {
+    font-size: 25px;
+    color: #fff;
+}
+
+#scoreListPanel td {
+    font-size: 20px;
+    text-align: center;
+    color: #59f;
+}
+
+
+

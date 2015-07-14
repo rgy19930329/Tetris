@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>test</title>
+
+<script type="text/javascript" src="../static/js/jquery-1.8.2.min.js"></script>
+
+</head>
+
+<body>
+
+	<input type="text" value="1" id="level">
+	<div>
+		<button id="press">查看高分榜</button>
+	</div>
+	<div id="showScoreList">
+		<table id="showList">
+			<tr>
+				<th>rank</th>
+				<th>name</th>
+				<th>score</th>
+			</tr>
+		</table>
+	</div>
+
+	<hr>
+
+	<div>
+		<p>level:<input type="text" value="1" id="level2"></p>
+		<p>name:<input type="text" value="rgy" id="name"></p>
+		<p>score:<input type="text" value="1240" id="score"></p>
+		<p><button id="update">更新数据</button></p>
+		<div id="showResult"></div>
+	</div>
+
+
+	<script type="text/javascript">
+
+	$("#press").click(function(){
+		var level = $("#level").val();
+		$.ajax({
+	        type: "post",
+	        url: "TreatGetScoreList.php",
+	        data: {level: level},
+	        dataType: "json",
+	        success: function(data) {
+	        	$.each(data, function(i, item) {
+	        		$("#showList").append(
+	        			'<tr>'+
+							'<td>' + (i+1) + '</td>'+
+							'<td>' + item.name + '</td>'+
+							'<td>' + item.score + '</td>'+
+						'</tr>'
+	        		);
+	        	});
+	        },
+	        error: function(data) {
+	            $("#showScoreList").html("失败");
+	        }
+	    });
+	});
+
+
+	$("#update").click(function(){
+		var level = $("#level2").val();
+		var name = $("#name").val();
+		var score = $("#score").val();
+		$.ajax({
+	        type: "post",
+	        url: "TreatUpdateScoreList.php",
+	        data: {level: level, name: name, score: score},
+	        dataType: "text",
+	        success: function(msg) {
+	            $("#showResult").html(msg);
+	        },
+	        error: function(msg) {
+	            $("#showResult").html("失败");
+	        }
+	    });
+	});
+
+
+	</script>
+</body>
+</html>
